@@ -2,8 +2,8 @@
 Exam 1, problem 1.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and Jacob Ritenour.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -89,10 +89,21 @@ def problem1a(rectangle, square, thickness, window):
       :type window:    rg.RoseWindow
     """
     # --------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.  SEE THE PICTURES in the PDF!
+    # DONE: 2. Implement and test this function.  SEE THE PICTURES in the PDF!
     #          Tests have been written for you (above).
     # --------------------------------------------------------------------------
+    rectangle.attach_to(window)
+    square.attach_to(window)
 
+    start = rg.Point(square.center.x, square.center.y)
+    end = rg.Point(rectangle.get_upper_right_corner().x - rectangle.get_width()/2, rectangle.get_upper_right_corner().y)
+
+    line = rg.Line(start, end)
+    line.thickness = thickness
+    line.color = rectangle.outline_color
+    line.attach_to(window)
+
+    window.render()
 
 def run_test_problem1b():
     """ Tests the  problem1b   function. """
@@ -149,10 +160,21 @@ def problem1b(point, win, width, height, color):
       :type color:  str
     """
     # --------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.  SEE THE PICTURES in the PDF!
+    # DONE: 3. Implement and test this function.  SEE THE PICTURES in the PDF!
     #          Tests have been written for you (above).
     # --------------------------------------------------------------------------
+    start_x = point.x - width/2
+    start_y = point.y
+    start = rg.Point(start_x, start_y)
 
+    end_x = point.x + width/2
+    end_y = point.y + height
+    end = rg.Point(end_x, end_y)
+
+    ellipse = rg.Ellipse(start, end)
+    ellipse.fill_color = color
+    ellipse.attach_to(win)
+    win.render()
 
 # ------------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
