@@ -2,8 +2,8 @@
 Exam 1, problem 3.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and Jacob Ritenour.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -88,7 +88,7 @@ def problem3(point, length, delta, window):
       :type window:  rg.RoseWindow
     """
     # --------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     # TODO (continued):  IMPORTANT: Use this ITERATIVE ENHANCEMENT PLAN:
     # TODO (continued):    1. Make the sole VERTICAL line appear,
     # TODO (continued):         with thickness 3.
@@ -102,7 +102,42 @@ def problem3(point, length, delta, window):
     # TODO (continued):         and colors per the specified pattern.
     #          Tests have been written for you (above).
     # --------------------------------------------------------------------------
+    start_x = point.x
+    start_y = point.y
+    start = rg.Point(start_x, start_y)
+    end_x = point.x
+    end_y = point.y + length
+    end = rg.Point(end_x, end_y)
+    line = rg.Line(start, end)
+    line.color = 'black'
+    line.thickness = 3
+    line.attach_to(window)
 
+    start2_x = point.x
+    start2_y = point.y
+
+    end2_x = point.x+length
+    end2_y = point.y
+
+
+    for k in range(length//delta +1):
+
+        start2 = rg.Point(start2_x, start2_y)
+        end2 = rg.Point(end2_x, end2_y)
+        line2 = rg.Line(start2, end2)
+        line2.thickness = 3
+        line2.color = 'magenta'
+        if(k%3==1):
+            line2.color = 'cyan'
+        if(k%3==2):
+            line2.color = 'spring green'
+        line2.attach_to(window)
+
+        start2_y = start2_y + delta
+        end2_y = end2_y + delta
+        end2_x = end2_x + 20
+
+    window.render()
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
